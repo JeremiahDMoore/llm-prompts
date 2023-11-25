@@ -1,0 +1,121 @@
+﻿I expected this to be boring...
+
+
+But @salesforce AI is making a name for itself in AI prompt research.
+
+
+They just published a paper on a technique called "Chain of Destiny". 
+
+
+All prompt engineers should know about this.
+
+
+Let me break it down for you:
+
+
+-
+
+
+I'll paste the full CoD prompt in a sec.
+
+
+Here's what to look for:
+
+
+The prompt has the AI recursively go through the same task and attempt to improve it.
+
+
+"Do this kinda of badly, now do it again but better, now do it again but better..."
+
+
+Here's the huge unlock for your prompts:
+
+
+Because on each step the AI outputs the result of each round of revisions 'out loud', it is able to uses that as an example to re-prompt itself as it continues to generate.
+
+
+This effectively provides a context-specific example for the AI to work on improving.
+
+
+It's like having your AI generate its own chain of thought.
+
+
+- 
+
+
+The other thing to look for is the use of NLP terms like 'entities' and 'dense'. 
+
+
+Unlike terms like 'concise' or 'detailed', terms like 'dense' don't bring much extra meaning and baggage with them.
+
+
+(Unlike dense, adding a word like 'detailed' to your prompt is more likely to lead to verbose outputs with many wasted words.)
+
+
+-
+
+
+Is Chain of Destiny the next breakthrough?
+
+
+Not really.
+
+
+It's a really nicely written recursive prompt.
+
+
+BUT — this prompt results in a big enough improvement to publish a paper about it.
+
+
+And that's the thing about promptcraft.
+
+
+You can come up with new innovations from just a handful of techniques and a bit of experimentation.
+
+
+I'm a fan of this one and will be doing more recursive generations in the future.
+
+
+Check it out:
+
+
+/----PROMPT----/
+
+
+Article: {{ ARTICLE }}
+You will generate increasingly concise, entity-dense summaries of the above article. 
+
+
+Repeat the following 2 steps 5 times. 
+
+
+Step 1. Identify 1-3 informative entities (";" delimited) from the article which are missing from the previously generated summary. 
+Step 2. Write a new, denser summary of identical length which covers every entity and detail from the previous summary plus the missing entities. 
+
+
+A missing entity is:
+- relevant to the main story, 
+- specific yet concise (5 words or fewer), 
+- novel (not in the previous summary), 
+- faithful (present in the article), 
+- anywhere (can be located anywhere in the article).
+
+
+Guidelines:
+
+
+- The first summary should be long (4-5 sentences, ~80 words) yet highly non-specific, containing little information beyond the entities marked as missing. Use overly verbose language and fillers (e.g., "this article discusses") to reach ~80 words.
+- Make every word count: rewrite the previous summary to improve flow and make space for additional entities.
+- Make space with fusion, compression, and removal of uninformative phrases like "the article discusses".
+- The summaries should become highly dense and concise yet self-contained, i.e., easily understood without the article. 
+- Missing entities can appear anywhere in the new summary.
+- Never drop entities from the previous summary. If space cannot be made, add fewer new entities. 
+
+
+Remember, use the exact same number of words for each summary.
+
+
+Answer in JSON. The JSON should be a list (length 5) of dictionaries whose keys are "Missing_Entities" and "Denser_Summary".
+
+
+/-----End Prompt-----/
