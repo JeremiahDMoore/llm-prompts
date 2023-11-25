@@ -1,32 +1,4 @@
-﻿I expected this to be boring...
-
-
-But @salesforce AI is making a name for itself in AI prompt research.
-
-
-They just published a paper on a technique called "Chain of Destiny". 
-
-
-All prompt engineers should know about this.
-
-
-Let me break it down for you:
-
-
--
-
-
-I'll paste the full CoD prompt in a sec.
-
-
-Here's what to look for:
-
-
-The prompt has the AI recursively go through the same task and attempt to improve it.
-
-
-"Do this kinda of badly, now do it again but better, now do it again but better..."
-
+Chain of Destiny style recursive prompt...
 
 Here's the huge unlock for your prompts:
 
